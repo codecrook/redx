@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './App.css';
@@ -31,7 +32,7 @@ function BankCard(props) {
   const bloodGroups = [];
 
   for (const [index, value] of Object.keys(props.details.blood_avl).entries()) {
-    bloodGroups.push(<div className='blood_group'><h4>{ value }:</h4> {props.details.blood_avl[value]}</div>)
+    bloodGroups.push(<div key={ index } className='blood_group'><h4>{ value }:</h4> { props.details.blood_avl[value] }</div>)
   }
 
 
@@ -41,10 +42,10 @@ function BankCard(props) {
         <Typography variant="h5" component="h2">
           {props.details.name}
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
+        <Typography component={'div'} variant={'body2'} className={classes.pos} color="textSecondary">
           Phone: {props.details.ph_no}
         </Typography>
-        <Typography color="textSecondary">
+        <Typography color="textSecondary" component={'div'} variant={'body2'}>
           { bloodGroups }
         </Typography>
       </CardContent>
@@ -54,11 +55,23 @@ function BankCard(props) {
     </Card>
   );
 }
+function RequestBlood() {
+  return (
+    <form noValidate autoComplete="off">
+      <TextField
+        id="filled-name"
+        label="Name"
+        margin="normal"
+        variant="filled"
+      />
+    </form>
+);
+}
 function App() {
   return (
     <Router>
       <Route exact path="/" component={HomeApp}/>
-      <Route exact path="/request-blood" component={App}/>
+      <Route exact path="/request-blood" component={RequestBlood}/>
     </Router>
   );
 }
@@ -67,7 +80,7 @@ function HomeApp() {
   const cards = [];
 
   for (const [index, value] of bankData.entries()) {
-    cards.push(<BankCard key={index} details={ value } />)
+    cards.push(<BankCard key={ index } details={ value } />)
   }
 
   return (
@@ -75,14 +88,14 @@ function HomeApp() {
       <header className="app-header">
         <h1>RedX</h1>
       </header>
-      <main className="container">
-        <section className="map-container">
+      <div className="container">
+        <div className="map-container">
           {cards}
-        </section>
-        <section className="action-container">
+        </div>
+        <div className="action-container">
           <button className="request-btn"><Link to="/request-blood/">Request Blood</Link></button>
-        </section>
-      </main>
+        </div>
+      </div>
     </div>
 
   );
