@@ -1,7 +1,28 @@
-.App {
-
+.req_blood_input_container label {
+  color: white;
 }
-.app-header{
+.req_blood_input_container select {
+  margin: 10px;
+}
+
+.req_blood_input_container input {
+  margin: 10px;
+}
+.req_blood_input_container {
+  margin: 16px;
+}
+.container {
+  overflow: auto;
+}
+.req_blood_container {
+  text-align: center;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.app-header {
   color: aquamarine;
   width: 100vw;
   height: 8vh;
@@ -13,16 +34,17 @@
 .blood_group h4 {
   display: inline-block;
 }
-.map-container{
-  width: 95vw;
-  height: 80vh;
+.map-container {
   background-color: azure;
   overflow: auto;
 }
 .map-container > div {
   margin: 10px;
 }
-.request-btn{
+.request-btn > a {
+  color: white;
+}
+.request-btn {
   margin-top: 1.2vh;
   width: 95vw;
   height: 5vh;
@@ -32,4 +54,20 @@
   box-shadow: none;
   color: white;
   font-size: 1.2em;
+  height: 75px;
+}
+
+.drawer_ico {
+  position: absolute !important;
+  left: 10px;
+  top: 5px;
+  color: white !important;
+}
+.main_header {
+  display: inline-block;
+  margin: 10px;
+}
+.drawer span {
+  color: black;
+  text-decoration: none;
 }
