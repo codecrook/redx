@@ -41,6 +41,9 @@
 .map-container > div {
   margin: 10px;
 }
+.request-btn > a {
+  color: white;
+}
 .request-btn {
   margin-top: 1.2vh;
   width: 95vw;
@@ -52,4 +55,19 @@
   color: white;
   font-size: 1.2em;
   height: 75px;
+}
+
+.drawer_ico {
+  position: absolute !important;
+  left: 10px;
+  top: 5px;
+  color: white !important;
+}
+.main_header {
+  display: inline-block;
+  margin: 10px;
+}
+.drawer span {
+  color: black;
+  text-decoration: none;
 }

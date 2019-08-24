@@ -4,11 +4,21 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import Typography from "@material-ui/core/Typography";
 import "./App.css";
 import bankData from "./demo_data/blood-bank.json";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import RequestBlood from "./request_blood/request_blood";
+import RedxHeroes from "./redx-heroes/redx-heroes";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ForumIcon from "@material-ui/icons/Forum";
+import StarIcon from "@material-ui/icons/Star";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 
 function BankCard(props) {
   const useStyles = makeStyles({
@@ -80,6 +90,7 @@ function App() {
     <Router>
       <Route exact path="/" component={HomeApp} />
       <Route exact path="/request-blood" component={RequestBlood} />
+      <Route exact path="/redx-heroes" component={RedxHeroes} />
     </Router>
   );
 }
@@ -90,11 +101,80 @@ function HomeApp() {
   for (const [index, value] of bankData.entries()) {
     cards.push(<BankCard key={index} details={value} />);
   }
+  const useStyles = makeStyles({
+    list: {
+      width: 250
+    },
+    fullList: {
+      width: "auto"
+    }
+  });
+  const classes = useStyles();
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false
+  });
+
+  const toggleDrawer = (side, open) => event => {
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [side]: open });
+  };
+
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List className="drawer">
+        <Link to="/redx-heroes/">
+          <ListItem button key="RedX Heros">
+            <ListItemIcon>
+              <StarIcon />
+            </ListItemIcon>
+            <ListItemText primary="RedX Heros" />
+          </ListItem>
+        </Link>
+        <ListItem button key="Forum">
+          <ListItemIcon>
+            <ForumIcon />
+          </ListItemIcon>
+          <ListItemText primary="Forum" />
+        </ListItem>
+      </List>
+    </div>
+  );
 
   return (
     <div className="App">
       <header className="app-header">
-        <h1>RedX</h1>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          className="drawer_ico"
+          onClick={toggleDrawer("left", true)}
+        >
+          <MenuIcon />
+        </IconButton>
+        <SwipeableDrawer
+          open={state.left}
+          onClose={toggleDrawer("left", false)}
+          onOpen={toggleDrawer("left", true)}
+        >
+          {sideList("left")}
+        </SwipeableDrawer>
+        <h1 className="main_header">RedX</h1>
       </header>
       <div className="container">
         <div className="map-container">{cards}</div>
