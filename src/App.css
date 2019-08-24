@@ -70,4 +70,5 @@
 .drawer span {
   color: black;
   text-decoration: none;
+  display: inline-block;
 }

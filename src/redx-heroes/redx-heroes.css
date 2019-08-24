@@ -1,0 +1,11 @@
+.top_donners_container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.top_donners_card_container {
+  overflow: auto;
+}
+.top_donners_card_container div {
+  margin: 10px;
+}
