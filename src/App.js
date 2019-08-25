@@ -89,14 +89,26 @@ function BankCard(props) {
 function App() {
   return (
     <Router>
-      <Route exact path="/" component={HomeApp} />
+      <Route exact path="/" component={LoginApp} />
+      <Route exact path="/home" component={HomeApp} />
       <Route exact path="/request-blood" component={RequestBlood} />
       <Route exact path="/redx-heroes" component={RedxHeroes} />
       <Route exact path="/forum" component={RedxForum} />
     </Router>
   );
 }
-
+function LoginApp() {
+  return (
+    <div className="loginBtns">
+      <Button className="fbBtn">
+        <Link to="/home/">Login With Facebook</Link>
+      </Button>
+      <Button className="guestBtn">
+        <Link to="/home/">Login As Guest</Link>
+      </Button>
+    </div>
+  );
+}
 function HomeApp() {
   const cards = [];
 
