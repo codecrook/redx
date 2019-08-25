@@ -19,6 +19,7 @@ import ForumIcon from "@material-ui/icons/Forum";
 import StarIcon from "@material-ui/icons/Star";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import RedxForum from "./redx-forum/redx-forum";
 
 function BankCard(props) {
   const useStyles = makeStyles({
@@ -91,6 +92,7 @@ function App() {
       <Route exact path="/" component={HomeApp} />
       <Route exact path="/request-blood" component={RequestBlood} />
       <Route exact path="/redx-heroes" component={RedxHeroes} />
+      <Route exact path="/forum" component={RedxForum} />
     </Router>
   );
 }
@@ -145,12 +147,14 @@ function HomeApp() {
             <ListItemText primary="RedX Heros" />
           </ListItem>
         </Link>
-        <ListItem button key="Forum">
-          <ListItemIcon>
-            <ForumIcon />
-          </ListItemIcon>
-          <ListItemText primary="Forum" />
-        </ListItem>
+        <Link to="/forum/">
+          <ListItem button key="Forum">
+            <ListItemIcon>
+              <ForumIcon />
+            </ListItemIcon>
+            <ListItemText primary="Forum" />
+          </ListItem>
+        </Link>
       </List>
     </div>
   );

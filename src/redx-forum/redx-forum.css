@@ -1,0 +1,16 @@
+h1 {
+  color: white;
+}
+.chats_container ul {
+  background: whitesmoke;
+  margin: 10px;
+}
+.chats_container {
+  overflow: auto;
+}
+.comment_area {
+  margin: 10px;
+}
+.comment_area textarea {
+  width: 100%;
+}
