@@ -1,3 +1,21 @@
+.loginBtns {
+  margin-top: 50%;
+}
+.fbBtn {
+  background-color: #3b5998 !important;
+}
+.guestBtn {
+  background-color: #42535b !important;
+}
+.loginBtns button {
+  margin: 10px;
+  height: 50px;
+  border-radius: 10px;
+}
+.loginBtns button a {
+  text-decoration: none;
+  color: white;
+}
 .req_blood_input_container label {
   color: white;
 }
