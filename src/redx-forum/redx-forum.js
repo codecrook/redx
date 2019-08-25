@@ -55,32 +55,39 @@ function ChatList(props) {
 }
 class ListView extends React.Component {
   constructor(props) {
-    console.log(props);
     super(props);
-    this.chatList = props.chatList;
+    this.state = {
+      chatList: props.chatList
+    };
   }
-
+  makeChatList() {
+    let chatList = [];
+    for (const [index, value] of this.state.chatList.entries()) {
+      chatList.push(<ChatList key={index} details={value} />);
+    }
+    return chatList;
+  }
   sendMessage() {
-    console.log(this);
-    this.chatList.push({
-      user_name: "Vandan Shah",
-      date:
-        new Date().getDate() +
-        "-" +
-        new Date().getMonth() +
-        "-" +
-        new Date().getYear(),
-      time: new Date().getHours() + ":" + new Date().getMinutes(),
-      message: document.getElementsByTagName("textarea")[0]
-        ? document.getElementsByTagName("textarea")[0].value
-        : ""
+    this.setState({
+      chatList: this.state.chatList.concat({
+        user_name: "Vandan Shah",
+        date:
+          new Date().getDate() +
+          "-" +
+          new Date().getMonth() +
+          "-" +
+          new Date().getYear(),
+        time: new Date().getHours() + ":" + new Date().getMinutes(),
+        message: document.getElementsByTagName("textarea")[0]
+          ? document.getElementsByTagName("textarea")[0].value
+          : ""
+      })
     });
-    this.forceUpdate();
   }
   render() {
     return (
       <div className="chats_container">
-        <div>{this.chatList}</div>
+        <div>{this.makeChatList()}</div>
         <div className="comment_area">
           <TextareaAutosize
             aria-label="Write Message"
@@ -96,14 +103,10 @@ class ListView extends React.Component {
   }
 }
 function RedxForum() {
-  let chatList = [];
-  for (const [index, value] of ForumData.entries()) {
-    chatList.push(<ChatList key={index} details={value} />);
-  }
   return (
     <div className="top_donners_container">
       <h1>Forum</h1>
-      <ListView chatList={chatList} />
+      <ListView chatList={ForumData} />
     </div>
   );
 }
